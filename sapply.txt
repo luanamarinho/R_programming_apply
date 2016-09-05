@@ -1,0 +1,34 @@
+#Função sapply: tenta simplificar o resultado de lapply (que SEMPRE é uma lista):
+#Se o resultador for:
+
+#1) Uma lista com vetores unitários, sapply simplifica transformando tudo para um vetor
+#2) Uma lista com vetores de mesmo tamanho (>1), sapply retorna uma matriz
+#3) Se nenhuma das anteriores, sapply não simplifica e atua como lapply, retornando uma lista
+
+# Sintaxe: sapply(x, FUN, ...)
+# sapply aplica função FUN sobre x, valendo-se dos argumentos opcionais "..."
+
+
+x<-list(a=matrix(1:4,2,2), b=matrix(1,2,3))
+x
+#$a
+#     [,1] [,2]
+#[1,]    1    3
+#[2,]    2    4
+
+#$b
+#     [,1] [,2] [,3]
+#[1,]    1    1    1
+#[2,]    1    1    1
+
+sapply(x, sum, na.rm = TRUE)
+# a  b 
+#10  6 
+
+class(sapply(x, sum, na.rm = TRUE))
+#[1] "numeric"
+
+# Note que sum(x) retorna erro!
+
+sum(x)
+#Error in sum(x) : invalid 'type' (list) of argument
